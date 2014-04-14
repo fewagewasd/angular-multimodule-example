@@ -9,7 +9,7 @@ buildscript {
 
 apply plugin: 'grunt'
 
-npmInstall.dependsOn ':angular-multimodule-base:grunt_bower_install'
+npmInstall.dependsOn ':angular-multimodule-base-ui:grunt_bower_install'
 grunt_bower_install.dependsOn 'npmInstall'
 grunt_default.dependsOn 'grunt_bower_install'
 grunt_build.dependsOn 'grunt_bower_install'

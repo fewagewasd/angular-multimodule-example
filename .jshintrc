@@ -34,9 +34,6 @@
     "inject": false,
     "it": false,
     "spyOn": false,
-    "_": false,
-    "key": false,
-    // helper classes that are not part of a module
-    "PaginationHelper": false
+    "_": false
   }
 }

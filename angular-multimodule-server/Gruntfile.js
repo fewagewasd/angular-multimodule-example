@@ -263,18 +263,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        svgmin: {
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= app.app %>/images',
-                        src: '{,*/}*.svg',
-                        dest: '<%= app.dist %>/images'
-                    }
-                ]
-            }
-        },
         htmlmin: {
             dist: {
                 options: {
@@ -373,8 +361,7 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'copy:styles',
-                'imagemin',
-                'svgmin'
+                'imagemin'
             ]
         },
 
@@ -386,7 +373,6 @@ module.exports = function (grunt) {
                 reporters: ['teamcity']
             }
         },
-
         bower: {
             install: {}
         }

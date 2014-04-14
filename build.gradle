@@ -29,8 +29,8 @@ subprojects {
 
     compileJava.options.encoding = 'UTF-8'
 
-    sourceCompatibility = 1.7
-    targetCompatibility = 1.7
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     configurations {
         all*.exclude group: 'log4j', module: 'log4j'
@@ -44,4 +44,3 @@ subprojects {
 
 }
 
-task clean(dependsOn: 'server:grunt_clean')

@@ -34,10 +34,11 @@ war {
     archiveName = 'ROOT.war'
 }
 
-grunt_default.dependsOn 'npmInstall'
-grunt_build.dependsOn 'npmInstall'
-grunt_build_gradle.dependsOn 'npmInstall'
-grunt_build_dev_gradle.dependsOn 'npmInstall'
+grunt_bower_install.dependsOn 'npmInstall'
+grunt_default.dependsOn 'grunt_bower_install'
+grunt_build.dependsOn 'grunt_bower_install'
+grunt_build_gradle.dependsOn 'grunt_bower_install'
+grunt_build_dev_gradle.dependsOn 'grunt_bower_install'
 
 if (System.getProperty('prod') != null) {
     build.dependsOn 'grunt_build_gradle'

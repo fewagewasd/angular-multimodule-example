@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
         // Project settings
         app: {
-            moduleDependencies: ['angular-multimodule-base'],
+            moduleDependencies: ['angular-multimodule-base-ui'],
             src: 'src/main/javascript',
             testSrc: 'src/test/javascript',
             buildDir: 'build',

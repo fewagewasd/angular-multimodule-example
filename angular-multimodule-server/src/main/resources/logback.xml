@@ -7,7 +7,7 @@
             <Pattern>[%p] %c - %m%n</Pattern>
         </encoder>
     </appender>
-    <logger name="at.eurofunk.eocs" level="DEBUG"/>
+    <logger name="org.unterhofer" level="DEBUG"/>
     <logger name="org.apache" level="WARN"/>
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
     <logger name="org.hibernate.validator" level="WARN"/>

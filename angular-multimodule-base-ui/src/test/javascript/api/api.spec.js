@@ -25,15 +25,15 @@ describe('Api Service', function () {
 
     beforeEach(function () {
 
-        angular.module('app.base.api.test', []).config(function ($apiProvider) {
+        angular.module('multimodule.example.base.api.test', []).config(function ($apiProvider) {
             $apiProvider.endpoint('test', {
                 url: 'test',
                 model: Test
             });
         });
 
-        module('app.base.api');
-        module('app.base.api.test');
+        module('multimodule.example.base.api');
+        module('multimodule.example.base.api.test');
 
         inject(function (_$httpBackend_, _$api_) {
             $httpBackend = _$httpBackend_;
@@ -44,19 +44,6 @@ describe('Api Service', function () {
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
-    });
-
-    it('should return a paginated result if a PagedResultDTO is returned by the server', function () {
-        $httpBackend.expectGET('/api/test?page=1&size=10').respond({totalCount: 2, elements: testData});
-        $api.test.list({page: 2, size: 10}).then(function (result) {
-            expect(result.totalCount).toBe(2);
-            expect(result.elements.length).toBe(2);
-            expect(result.elements[0].isTestObject).toBe(true);
-            expect(result.elements[0].id).toBe(1);
-            expect(result.elements[1].isTestObject).toBe(true);
-            expect(result.elements[1].id).toBe(2);
-        });
-        $httpBackend.flush();
     });
 
     it('should return a list of objects if the server response is not paginated', function () {
