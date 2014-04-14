@@ -4,7 +4,6 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
     var _endpointUrl = url + (settings.url || endpointName);
     var ModelClass = settings.model;
     var $http = _$http_;
-    var that = this;
 
     var toUrlParams = function (data, appendTo) {
         return !!data ? (!!appendTo ? appendTo : '' ) + _.reduce(_.map(_.keys(data), function (key) {
@@ -14,12 +13,12 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
         }) : '';
     };
 
-    var fixPaginationOffset = function(paginationParams) {
+    var fixPaginationOffset = function (paginationParams) {
         if (!paginationParams) {
             return paginationParams;
         }
         var params = angular.copy(paginationParams);
-        if(!!paginationParams.page) {
+        if (!!paginationParams.page) {
             params.page = paginationParams.page - 1;
         }
         return params;
@@ -28,23 +27,14 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
     this.list = function (paginationParams) {
         var params = fixPaginationOffset(paginationParams);
         return $http.get(_endpointUrl + toUrlParams(params, '?')).then(function (response) {
-            if (!!response.data.totalCount) {
-                return {
-                    totalCount: response.data.totalCount,
-                    elements: _.map(response.data.elements, function (elem) {
-                        return new ModelClass(elem);
-                    })
-                };
-            } else {
-                return _.map(response.data, function (elem) {
-                    return new ModelClass(elem);
+            if (data._embedded.length > 0 && !!response._embedded[_endpointUrl]) {
+                // map the returned data to domain objects
+                response._embedded[_endpointUrl] = _.map(response._embedded[_endpointUrl], function (data) {
+                    return new ModelClass(data);
                 });
             }
+            return response;
         });
-    };
-
-    this.listAll = function(params) {
-        return that.list({all:true});
     };
 
     this.get = function (id) {
