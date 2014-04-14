@@ -1,0 +1,38 @@
+{
+    "name": "angular-multimodule-base",
+    "description": "Angular Multimodule Base Package",
+    "version": "1.0",
+    "keywords": [],
+    "homepage": "",
+    "author": {
+        "name": "Stefan Unterhofer",
+        "email": "stefan@unterhofer.org",
+        "url": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:fewagewasd/angular-multimodule-example.git"
+    },
+    "licenses": [
+        {
+            "type": "WTFPL"
+        }
+    ],
+    "private": true,
+    "main": [
+        "dist/angular-multimodule-base.min.js"
+    ],
+    "ignore": [
+        "docs",
+        "test"
+    ],
+    "dependencies": {
+        "lodash": "~2.4.1",
+        "angular": "~1.2.14",
+        "angular-resource": "~1.2.14",
+        "jquery": "~2.1.0"
+    },
+    "devDependencies": {
+        "angular-mocks": "~1.2.14"
+    }
+}

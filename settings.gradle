@@ -1,0 +1,3 @@
+rootProject.name = 'angular-multimodule-example'
+
+include 'angular-multimodule-base', 'angular-module-1', 'angular-multimodule-server'

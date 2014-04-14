@@ -1,0 +1,47 @@
+description = 'AngularJS Multimodule Example'
+
+version = '1.0'
+
+group = 'org.unterhofer'
+ext.artifactId = 'angular-multimodule'
+
+ext.springVersion = '4.0.3.RELEASE'
+ext.springBootVersion = '1.0.1.RELEASE'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+
+    compileJava.options.encoding = 'UTF-8'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    configurations {
+        all*.exclude group: 'log4j', module: 'log4j'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+
+}
+
+task clean(dependsOn: 'server:grunt_clean')

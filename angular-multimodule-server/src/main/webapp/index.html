@@ -1,0 +1,104 @@
+<!doctype html >
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="eocsApp" ng-cloak> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" ng-app="eocsApp" ng-cloak> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" ng-app="eocsApp" ng-cloak> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="eocsApp" ng-cloak> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>eocs-server-bootstrap</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,src/main/webapp}) styles/main.css -->
+    <link rel="stylesheet" href="styles/generated/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+    <script src="bower_components/keymaster/keymaster.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,src/main/webapp}) scripts/scripts.js -->
+    <script src="scripts/modules/eocs-base-ui.js"></script>
+    <script src="scripts/modules/eocs-base-ui.tpl.js"></script>
+    <script src="scripts/modules/eocs-admin-ui.js"></script>
+    <script src="scripts/modules/eocs-admin-ui.tpl.js"></script>
+    <!--<script src="scripts/modules/app-map-ui.js"></script>-->
+    <!--<script src="scripts/modules/app-map-ui.tpl.js"></script>-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/logout.js"></script>
+    <script src="scripts/services/authentication-service.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">eOCS</a>
+        </div>
+        <div class="collapse navbar-collapse" ng-if="authenticated">
+            <eocs-main-menu></eocs-main-menu>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="authenticated">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{account.username}}
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-href="#/admin/users/{{account.id}}">Profile</a></li>
+                        <li><a href="#/logout">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentProfile.name}}
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="profile in profiles">
+                            <a href="" ng-click="switchProfile()">{{profile.name}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<!-- /.container -->
+<div class="container">
+    <div class="alert alert-success" ng-show="messages.success">{{messages.success}}</div>
+    <div class="alert alert-danger" ng-show="messages.error">{{messages.error}}</div>
+    <div class="alert alert-info" ng-show="messages.info">{{messages.info}}</div>
+    <div class="alert alert-warning" ng-show="messages.warning">{{messages.warning}}</div>
+</div>
+<div class="container" ng-view=""></div>
+
+</body>
+</html>

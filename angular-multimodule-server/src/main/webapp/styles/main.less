@@ -1,0 +1,76 @@
+body {
+  padding-top: 60px;
+}
+
+.eocs {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+button.pull-right {
+  margin-left: 5px;
+}
+
+.sort-link {
+  text-decoration: none;
+  color: black;
+}
+
+.search {
+  margin-bottom: 10px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+form {
+  .form-group {
+    label {
+      line-height: 35px;
+      vertical-align: middle;
+      text-align: right;
+    }
+    div {
+      span {
+          line-height: 35px;
+          vertical-align: middle;
+      }
+    }
+  }
+}
+
+.panel-heading {
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  button, a {
+    margin-top: -10px;
+  }
+}
+
+// focus colors for invalid form inputs
+.invalid-focus {
+  color: #b94a48;
+  border-color: #ee5f5b;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(238, 95, 91, 0.6)
+}
+
+.form-control.ng-invalid {
+  border-color: #ee5f5b;
+  &:invalid {
+      &:focus {
+        .invalid-focus
+      }
+    }
+    &:valid {
+      &:focus {
+        .invalid-focus
+      }
+    }
+    &:focus {
+      .invalid-focus
+    }
+}

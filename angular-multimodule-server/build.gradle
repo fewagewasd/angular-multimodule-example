@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-grunt-plugin:0.5'
+    }
+}
+
+apply plugin: 'grunt'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter-web:' + springBootVersion
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:' + springBootVersion
+
+    testCompile "org.springframework:spring-test:" + springVersion
+    testCompile "junit:junit:4.11"
+    testCompile "org.hsqldb:hsqldb:2.3.1"
+    testCompile "org.mockito:mockito-core:1.9.5"
+
+    testRuntime "org.slf4j:log4j-over-slf4j:1.7.5"
+    testRuntime "org.slf4j:jcl-over-slf4j:1.7.5"
+    testRuntime "ch.qos.logback:logback-classic:1.0.13"
+}
+
+springBoot {
+    mainClass = 'org.unterhofer.angular.multimodule.Application'
+}
+
+war {
+    archiveName = 'ROOT.war'
+}
+
+grunt_default.dependsOn 'npmInstall'
+grunt_build.dependsOn 'npmInstall'
+grunt_build_gradle.dependsOn 'npmInstall'
+grunt_build_dev_gradle.dependsOn 'npmInstall'
+
+if (System.getProperty('prod') != null) {
+    build.dependsOn 'grunt_build_gradle'
+    war.dependsOn 'grunt_build_gradle'
+    webAppDirName = 'build/web'
+} else {
+    build.dependsOn 'grunt_build_dev_gradle'
+    war.dependsOn 'grunt_build_dev_gradle'
+    webAppDirName = 'src/main/webapp'
+}
