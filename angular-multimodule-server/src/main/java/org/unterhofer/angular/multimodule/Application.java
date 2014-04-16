@@ -34,10 +34,22 @@ public class Application {
         movieRepository.save(new Movie("The Godfather", 1972));
         movieRepository.save(new Movie("The Godfather: Part II", 1974));
         movieRepository.save(new Movie("Dirty Harry", 1971));
+        movieRepository.save(new Movie("Magnum Force", 1973));
+        movieRepository.save(new Movie("The Enforcer", 1976));
+        movieRepository.save(new Movie("Sudden Impact", 1983));
+        movieRepository.save(new Movie("The Dead Pool", 1988));
         movieRepository.save(new Movie("Die Hard", 1988));
         movieRepository.save(new Movie("Alien", 1979));
+        movieRepository.save(new Movie("Aliens", 1986));
+        movieRepository.save(new Movie("Alien 3", 1992));
+        movieRepository.save(new Movie("Raiders of the Lost Ark", 1981));
+        movieRepository.save(new Movie("Indiana Jones and the Temple of Doom", 1984));
+        movieRepository.save(new Movie("Indiana Jones and the Last Crusade", 1989));
         movieRepository.save(new Movie("Star Wars Episode IV - A New Hope", 1977));
         movieRepository.save(new Movie("Star Wars Episode V - The Empire Strikes Back", 1980));
         movieRepository.save(new Movie("Star Wars Episode V - Return of the Jedi", 1983));
+        movieRepository.save(new Movie("Monty Python and the Holy Grail", 1975));
+        movieRepository.save(new Movie("Monty Python's Life of Brian", 1979));
+        movieRepository.save(new Movie("Monty Python's The Meaning of Life", 1983));
     }
 }

@@ -254,7 +254,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     module: function (src) {
-                        return 'app.admin.' + src.match(/src\/main\/javascript\/(.+)\/.*/)[1];
+                        return 'multimodule.example.admin.' + src.match(/src\/main\/javascript\/(.+)\/.*/)[1];
                     },
                     url: function (url) {
                         return url.replace('src/main/javascript/', '');

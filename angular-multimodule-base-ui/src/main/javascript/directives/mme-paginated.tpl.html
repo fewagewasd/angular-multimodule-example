@@ -1,0 +1,11 @@
+<div ng-cloak>
+    <div class="row text-center" ng-if="!isSinglePageList">
+        <pagination total-items="count" items-per-page="pagination.size" page="pagination.page" max-size="10"
+                    class="pagination-sm" boundary-links="true" rotate="false"></pagination>
+    </div>
+    <div class="row" ng-transclude></div>
+    <div class="row text-center" ng-if="!isSinglePageList">
+        <pagination total-items="count" items-per-page="pagination.size" page="pagination.page" max-size="10"
+                    class="pagination-sm" boundary-links="true" rotate="false"></pagination>
+    </div>
+</div>

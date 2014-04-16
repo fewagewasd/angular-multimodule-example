@@ -1,5 +1,5 @@
 {
-    "name": "angular-multimodule-module-1",
+    "name": "angular-multimodule-admin-ui",
     "description": "Angular Multimodule Example Module 1",
     "version": "1.0.0",
     "keywords": [],
@@ -20,8 +20,8 @@
     ],
     "private": true,
     "main": [
-        "dist/angular-multimodule-1.min.js",
-        "dist/angular-multimodule-1.tpl.min.js"
+        "dist/angular-multimodule-admin-ui.min.js",
+        "dist/angular-multimodule-admin-ui.tpl.min.js"
     ],
     "ignore": [
         "docs",

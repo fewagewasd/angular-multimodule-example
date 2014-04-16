@@ -1,0 +1,16 @@
+<h2>Movies</h2>
+
+<mme-paginated api="movieApi" collection="movies" search-params="name">
+    <table class="table table-hover">
+        <tr>
+            <th class="col-sm-6" mme-sortable sort-mode="alphabet">Name</th>
+            <th class="col-sm-1 text-right">
+                <a href="#/admin/movies/new"><span class="glyphicon glyphicon-plus"></span> New</a>
+            </th>
+        </tr>
+        <tr ng-repeat="movie in movies">
+            <td><a href="#/admin/movies/{{movie.id}}">{{movie.name}}</a> <span class="text-muted">({{movie.year}})</span></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</mme-paginated>

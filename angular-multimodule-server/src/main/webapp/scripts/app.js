@@ -16,6 +16,4 @@ angular.module('multimoduleApp', [
                 controller: 'MainController'
             });
     })
-    .config(function (RestangularProvider) {
-        RestangularProvider.setBaseUrl('/api');
-    });
+    .controller('MainController', function ($scope) {});

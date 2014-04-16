@@ -1,5 +1,5 @@
 {
-    "name": "angular-multimodule-base",
+    "name": "angular-multimodule-base-ui",
     "description": "Angular Multimodule Base Package",
     "version": "1.0.0",
     "keywords": [],
@@ -20,7 +20,8 @@
     ],
     "private": true,
     "main": [
-        "dist/angular-multimodule-base.min.js"
+        "dist/angular-multimodule-base-ui.min.js",
+        "dist/angular-multimodule-base-ui.tpl.min.js"
     ],
     "ignore": [
         "docs",

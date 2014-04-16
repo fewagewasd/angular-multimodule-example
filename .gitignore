@@ -25,5 +25,5 @@
 **/test/coverage/
 **/dist
 **/npm-debug.log
-server/src/main/webapp/scripts/modules
+angular-multimodule-server/src/main/webapp/scripts/modules
 .project

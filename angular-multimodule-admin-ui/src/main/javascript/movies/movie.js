@@ -1,9 +1,10 @@
 window.Movie = function(data) {
-    var name = data.name;
-    var year = data.year;
-    var links = data._links;
+    this.name = data.name;
+    this.year = data.year;
+    this.url = data._links.self.href;
+    this.id = this.url.substring(this.url.lastIndexOf('/')+1);
 };
 
-window.Movie.prototype.url = function () {
-    return !!links.self ? links.self.href : undefined;
+window.Movie.prototype.toString = function () {
+    return this.name + ' - ' + this.year + ' (' + this.id + ')';
 };

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="pull-right">
+            <a href="#{{baseUrl}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-backward"></span> Back to List</a>
+            &nbsp;
+            <div class="btn-group" ng-if="!editDetail">
+                <button type="button" class="btn btn-xs btn-default" mme-confirm-click mme-on-confirm="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                <button type="button" class="btn btn-xs btn-default" ng-click="edit()"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+            </div>
+            &nbsp;
+            <a href="#{{baseUrl}}/new" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> New</a>
+        </span>
+        <h5 ng-if="exists">{{detail.name}}</h5>
+        <h5 ng-if="!exists">New</h5>
+    </div>
+    <!-- create form element if editing -->
+    <form name="form" ng-if="!!editDetail">
+        <div class="panel-body">
+            <div ng-include="include"></div>
+        </div>
+        <div class="panel-footer text-right" ng-if="!!editDetail">
+            <button type="button" class="btn btn-xs btn-default" ng-click="cancelEdit()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            <button type="submit" class="btn btn-xs btn-primary" ng-click="save()" ng-disabled="form.$pristine || !form.$valid"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+        </div>
+    </form>
+    <!-- create div if viewing -->
+    <div ng-if="!editDetail">
+        <div class="panel-body">
+            <div ng-include="include"></div>
+        </div>
+    </div>
+</div>

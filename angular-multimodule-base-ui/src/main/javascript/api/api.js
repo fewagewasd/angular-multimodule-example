@@ -5,35 +5,17 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
     var ModelClass = settings.model;
     var $http = _$http_;
 
-    var toUrlParams = function (data, appendTo) {
-        return !!data ? (!!appendTo ? appendTo : '' ) + _.reduce(_.map(_.keys(data), function (key) {
-            return key + '=' + data[key];
-        }), function (result, next) {
-            return result + '&' + next;
-        }) : '';
-    };
-
-    var fixPaginationOffset = function (paginationParams) {
-        if (!paginationParams) {
-            return paginationParams;
-        }
-        var params = angular.copy(paginationParams);
-        if (!!paginationParams.page) {
-            params.page = paginationParams.page - 1;
-        }
-        return params;
-    };
-
-    this.list = function (paginationParams) {
-        var params = fixPaginationOffset(paginationParams);
-        return $http.get(_endpointUrl + toUrlParams(params, '?')).then(function (response) {
-            if (data._embedded.length > 0 && !!response._embedded[_endpointUrl]) {
+    this.list = function (searchRequest) {
+        var searchQuery = !!searchRequest && searchRequest instanceof window.SearchRequest ? '?' + searchRequest.urlEncoded() : '';
+        return $http.get(_endpointUrl + searchQuery).then(function (response) {
+            if (!_.isEmpty(response.data._embedded) && !!response.data._embedded[settings.url]) {
+                console.log('mapping movies to domain object');
                 // map the returned data to domain objects
-                response._embedded[_endpointUrl] = _.map(response._embedded[_endpointUrl], function (data) {
+                response.data._embedded[settings.url] = _.map(response.data._embedded[settings.url], function (data) {
                     return new ModelClass(data);
                 });
             }
-            return response;
+            return response.data;
         });
     };
 
@@ -45,19 +27,19 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
 
     this.save = function (object) {
         if (!!object.id) {
-            return $http.put(_endpointUrl + '/' + object.id, object).then(function (response) {
-                return new ModelClass(response.data);
-            });
+            return $http.put(_endpointUrl + '/' + object.id, object);
         } else {
-            return $http.post(_endpointUrl, object).then(function (response) {
-                return new ModelClass(response.data);
-            });
+            return $http.post(_endpointUrl, object);
         }
     };
 
     this.remove = function (id) {
         return $http.delete(_endpointUrl + '/' + id);
     };
+
+    this.resource = function() {
+        return settings.url;
+    }
 }
 
 function ApiProvider() {
