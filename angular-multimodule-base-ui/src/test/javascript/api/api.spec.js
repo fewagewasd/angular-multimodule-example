@@ -15,10 +15,14 @@ Test.prototype.equals = function (data) {
 // actual spec
 describe('Api Service', function () {
 
-    var testData = [
-        {id: 1, name: 'TestData1'},
-        {id: 2, name: 'TestData2'}
-    ];
+    var testData = {
+        _embedded: {
+            test: [
+                {id: 1, name: 'TestData1'},
+                {id: 2, name: 'TestData2'}
+            ]
+        }
+    };
 
     var $httpBackend;
     var $api;
@@ -49,31 +53,27 @@ describe('Api Service', function () {
     it('should return a list of objects if the server response is not paginated', function () {
         $httpBackend.expectGET('/api/test').respond(testData);
         $api.test.list().then(function (result) {
-            expect(result.length).toBe(2);
-            expect(result[0].isTestObject).toBe(true);
-            expect(result[0].id).toBe(1);
-            expect(result[1].isTestObject).toBe(true);
-            expect(result[1].id).toBe(2);
+            expect(result._embedded.test.length).toBe(2);
+            expect(result._embedded.test[0].isTestObject).toBe(true);
+            expect(result._embedded.test[0].id).toBe(1);
+            expect(result._embedded.test[1].isTestObject).toBe(true);
+            expect(result._embedded.test[1].id).toBe(2);
         });
         $httpBackend.flush();
     });
 
     it('should post an object without id', function () {
-        $httpBackend.expectPOST('/api/test', {name: 'NewTestObject'}).respond({id: 100, name: 'NewTestObject'});
-        $api.test.save({name: 'NewTestObject'}).then(function (result) {
-            expect(result.isTestObject).toBe(true);
-            expect(result.id).toBe(100);
-            expect(result.name).toBe('NewTestObject');
+        $httpBackend.expectPOST('/api/test', {name: 'NewTestObject'}).respond(200);
+        $api.test.save({name: 'NewTestObject'}).then(function (response) {
+            expect(response.status).toBe(200);
         });
         $httpBackend.flush();
     });
 
     it('should update an object with id', function () {
-        $httpBackend.expectPUT('/api/test/100', {id: 100, name: 'NewTestObject'}).respond({id: 100, name: 'NewTestObject'});
-        $api.test.save({id: 100, name: 'NewTestObject'}).then(function (result) {
-            expect(result.isTestObject).toBe(true);
-            expect(result.id).toBe(100);
-            expect(result.name).toBe('NewTestObject');
+        $httpBackend.expectPUT('/api/test/100', {id: 100, name: 'NewTestObject'}).respond(200);
+        $api.test.save({id: 100, name: 'NewTestObject'}).then(function (response) {
+            expect(response.status).toBe(200);
         });
         $httpBackend.flush();
     });

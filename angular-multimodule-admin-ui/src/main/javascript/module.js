@@ -1,3 +1,4 @@
+'use strict';
 angular.module('multimodule.example.admin.movies',['multimodule.example.base'])
     .config(function($routeProvider,$apiProvider) {
         $routeProvider.when('/admin/movies', {
@@ -7,10 +8,10 @@ angular.module('multimodule.example.admin.movies',['multimodule.example.base'])
             templateUrl: 'controllers/base-detail-controller.tpl.html',
             controller: 'MovieDetailController'
         });
-        $apiProvider.endpoint('movie',{
+        $apiProvider.endpoint('movie', {
             url: 'movies',
             model: window.Movie
-        })
+        });
     });
 
 angular.module('multimodule.example.admin',['multimodule.example.base','multimodule.example.admin.movies']);

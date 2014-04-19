@@ -1,3 +1,4 @@
+'use strict';
 window.Movie = function(data) {
     this.name = data.name;
     this.year = data.year;

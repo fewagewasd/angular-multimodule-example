@@ -1,3 +1,4 @@
+'use strict';
 angular.module('multimodule.example.admin.movies')
     .controller('MovieDetailController', function ($injector, $scope, $api) {
         // params for BaseDetailController:

@@ -37,9 +37,9 @@ function ApiEndpoint(url, endpointName, settings, _$http_) {
         return $http.delete(_endpointUrl + '/' + id);
     };
 
-    this.resource = function() {
+    this.resource = function () {
         return settings.url;
-    }
+    };
 }
 
 function ApiProvider() {
