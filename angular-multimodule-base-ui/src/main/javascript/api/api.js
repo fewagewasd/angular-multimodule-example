@@ -46,12 +46,19 @@ function ApiProvider() {
     var _urlPrefix = '/api/';
     var _endpoints = {};
 
+    var http;
+    var $api = {};
+
     this.endpoint = function (path, settings) {
-        _endpoints[path] = settings;
+        if (!!http) {
+            $api[path] = new ApiEndpoint(_urlPrefix, path, settings, http);
+        } else {
+            _endpoints[path] = settings;
+        }
     };
 
     this.$get = ['$http', function ($http) {
-        var $api = {};
+        http = $http;
 
         _.forEach(_.keys(_endpoints), function (path) {
             var settings = _endpoints[path];
