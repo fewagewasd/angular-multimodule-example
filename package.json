@@ -52,7 +52,8 @@
     "karma-teamcity-reporter": "~0.1.1",
     "path": "^0.4.9",
     "requirejs": "^2.1.11",
-    "lodash.template": "^2.4.1"
+    "lodash.template": "^2.4.1",
+    "phantomjs": "^1.9.7-5"
   },
   "engines": {
     "node": ">=0.8.0"

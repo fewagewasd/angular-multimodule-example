@@ -26,4 +26,5 @@
 **/dist
 **/npm-debug.log
 angular-multimodule-server/src/main/webapp/scripts/modules
+angular-multimodule-server/src/main/webapp/lib/
 .project
