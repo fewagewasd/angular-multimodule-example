@@ -16,9 +16,11 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url "http://repo.spring.io/milestone" }
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3")
+        classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
     }
 }
 
@@ -40,7 +42,19 @@ subprojects {
         mavenCentral()
         maven { url "http://repo.spring.io/milestone" }
     }
+}
 
+apply plugin: 'gulp'
 
+gulp_bower_install.dependsOn 'npmInstall'
+gulp_default.dependsOn 'gulp_bower_install'
+gulp_build.dependsOn 'gulp_bower_install'
+
+task build {}
+
+if (System.getProperty('prod') != null) {
+    build.dependsOn 'gulp_build_production'
+} else {
+    build.dependsOn 'gulp_default'
 }
 
