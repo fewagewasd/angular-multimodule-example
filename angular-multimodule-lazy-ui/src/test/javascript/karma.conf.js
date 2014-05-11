@@ -15,14 +15,6 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            '../bower_components/jquery/jquery.js',
-            '../bower_components/lodash/dist/lodash.js',
-            '../bower_components/angular/angular.js',
-            '../bower_components/angular-mocks/angular-mocks.js',
-            '../bower_components/angular-route/angular-route.js',
-            'src/main/javascript/**/module.js',
-            'src/main/javascript/**/*.js',
-            'src/main/javascript/**/*.tpl.html',
             'src/test/javascript/**/*.spec.js'
         ],
 
