@@ -80,6 +80,7 @@ function multiModuleTask(globs, globOpts, cb) {
 
     var tasks = getUiModules().map(function (module) {
         globOpts.module = module;
+        globOpts.cwd = lodash_template(cwd || '<%= module %>', globOpts);
         var moduleGlobs = globs.map(function (glob) {
             return lodash_template(glob, globOpts);
         });
@@ -122,10 +123,10 @@ var watchLog = function (event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 };
 
-gulp.task('serve', ['angular', 'proxy'], function () {
+gulp.task('serve', ['test', 'proxy'], function () {
     getUiModules().forEach(function (module) {
         console.log('Watching ' + module + '/src/main/**/*');
-        gulp.watch(module + '/src/main/**/*', ['angular'])
+        gulp.watch(module + '/src/main/**/*', ['test'])
             .on('change', watchLog);
     });
 
@@ -151,14 +152,14 @@ gulp.task('build_production', ['test_production', 'lessToCss']);
 
 gulp.task('build_development', ['test', 'lessToCss']);
 
-// some code to fix console output problems under windows
+// some code to fix console output problem<s under windows
 var log = console.log;
 console.log = function(){
     var args = arguments;
     if (args.hasOwnProperty('0')) {
         args['0'] = '\r'+args['0'];
     }
-    log(Object.keys(args).map(function(key) {return args[key]}).join(' '));
+    log(Object.keys(args).map(function(key) {return args[key];}).join(' '));
 };
 
 var testTask = function () {
@@ -213,6 +214,7 @@ gulp.task('angular-js', function () {
     return multiModuleTask(['<%= module %>/src/main/**/*.js'], function (src, module) {
         var dest = template('<%= app %>/scripts/modules');
         return src
+            .pipe(debug())
             .pipe(jshint(config.jshint.jshintrc))
             .pipe(jshint.reporter(config.jshint.reporter))
             .pipe(newer(dest + '/' + module + '.js'))
