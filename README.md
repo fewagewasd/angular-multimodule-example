@@ -27,3 +27,7 @@ I (Thomas) updated this example project for showing some concepts for AngularJS 
 * run 'gulp serve'
 
 This will start a local server on port 9000 that watches any changes in the modules and refreshes the browser automatically. API requests are forwarded to the Java application (running on port 8080) via proxy.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fewagewasd/angular-multimodule-example/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
